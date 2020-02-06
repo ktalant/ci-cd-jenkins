@@ -1,5 +1,9 @@
 node {
-    //properties([pipelineTriggers([cron('* * * * *')])])
+    properties([
+        buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), 
+        pipelineTriggers([cron('* * * * *')])
+        ])
+
     stage("Pull Repo"){
         //This line pulls a repo
         git 'https://github.com/farrukh90/packer.git'    
@@ -18,9 +22,10 @@ node {
     stage("Deploy to QA"){
         echo "Hello World"
     }
-    stage("Perform task on Husein Machine")
+    stage("Perform task on Husein Machine"){ 
         // Performs task on remote system
         //sh "curl http://jenkins_master.acirrustech.com:8080/job/Item1/build?token=ITEM1"
+    }
     stage("Script"){
 		sh label: '', script: 
 		'''#!/bin/bash
