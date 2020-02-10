@@ -23,7 +23,7 @@ node {
     }
 
     stage("Build an image"){
-        //Have multiple ami-Folders jumping into proper folder which i want to build AMI from  
+        //Have multiple ami-Folders jumping into proper folder to build AMI from  
         sh "cd amzn-apache-ami && packer build --var=aws_region=${AMI_REGION}  --var=instance_type=${INSTANCE_TYPE} amazon_ami.json"
     }
 
