@@ -1,6 +1,6 @@
 node {
     stage("Pull repo"){
-        echo "Pulling repo"
+        git 'https://github.com/ktalant/packer-AMIs.git'
     }
     stage("Run the job"){
         echo "Running job1"
