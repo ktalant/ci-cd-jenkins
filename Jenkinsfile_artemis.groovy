@@ -28,6 +28,7 @@ node {
         timestamps {
             ws {
                 sh '''
+                    rm -rf .ssh/known_hosts
                     ssh centos@${ARTEMIS_ENV} sudo yum install epel-release -y
                     ssh centos@${ARTEMIS_ENV} sudo yum install python-pip -y
                     ssh centos@${ARTEMIS_ENV} sudo pip install Flash
