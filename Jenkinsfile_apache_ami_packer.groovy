@@ -23,7 +23,7 @@ node {
     }
     stage("Build an image"){
         sh "ls -a"
-        sh "packer version && pwd && ls -l"
+        sh "cd amzn-apache-ami && pwd && ls -l"
     }
     stage("Send an email"){
         echo "Sending an email"
