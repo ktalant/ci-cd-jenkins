@@ -3,7 +3,7 @@ node {
         git 'https://github.com/ktalant/packer-AMIs.git'
     }
     stage("Build an image"){
-        echo "Running job1"
+        sh "ls -a"
     }
     stage("Send an email"){
         echo "Sending an email"
