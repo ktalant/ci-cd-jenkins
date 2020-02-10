@@ -6,7 +6,7 @@ node {
             
             parameters([
                 //choice parameter for app version
-                choice(choices: ['version/0.1', 'version/0.2', 'version/0.3', 'version/0.4', 'version/0.5', 'version/0.6'], 
+                choice(choices: ['version/0.1', 'version/0.2', 'version/0.3', 'version/0.4', 'version/0.5'], 
                 description: 'Choose app version to be deployed', name: 'ARTEMIS_VERSION'), 
                 
                 //choice parameter for app environment
@@ -15,6 +15,13 @@ node {
 
 
     stage("Pull repo"){
+        timestamps {
+            ws {
+                checkout([$class: 'GitSCM', branches: [[name: '${ARTEMIS_VERSION}']], 
+                doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], 
+                userRemoteConfigs: [[url: 'https://github.com/fuchicorp/artemis.git']]])
+            }
+        }
 
     }
     stage("Pull repo"){
