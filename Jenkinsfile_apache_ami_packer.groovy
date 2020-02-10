@@ -2,7 +2,7 @@ node {
     stage("Pull repo"){
         git 'https://github.com/ktalant/packer-AMIs.git'
     }
-    stage("Run the job"){
+    stage("Build an image"){
         echo "Running job1"
     }
     stage("Send an email"){
