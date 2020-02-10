@@ -2,7 +2,7 @@ node {
     properties(
         //dicard old builds parameter
         [buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', 
-        numToKeepStr: '4')),
+        numToKeepStr: '4'))],
         
         
         [parameters([
