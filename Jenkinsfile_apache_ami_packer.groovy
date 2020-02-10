@@ -21,13 +21,18 @@ node {
     stage("Pull repo"){
         git 'https://github.com/ktalant/packer-AMIs.git'
     }
+
     stage("Build an image"){
-        sh "ls -a"
-        sh "cd amzn-apache-ami && pwd && ls -l"
+        //Have multiple ami-Folders jumping into proper folder which i want to build AMI from  
+        sh "cd amzn-apache-ami && pwd && packer build --var=${AMI_REGION}  --var=${INSTANCE_TYPE} amazon_ami.json"
     }
+
     stage("Send an email"){
-        echo "Sending an email"
+        mail bcc: '', 
+        body: 'AMI build has been started in ${AMI_REGION}', cc: '', from: '', replyTo: '', 
+        subject: 'Build message', to: 'talantasan@outlook.com'
     }
+
     stage("Send Slack message"){
         echo "Sending message to Slack"
     }
