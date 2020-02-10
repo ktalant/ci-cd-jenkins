@@ -8,12 +8,14 @@ node {
         description: 'Enter proper instance type, e.g (t2.medium, m2.large etc)', 
         name: 'INSTANCE_TYPE', trim: false)])])
 
-        
+
     stage("Pull repo"){
         git 'https://github.com/ktalant/packer-AMIs.git'
     }
     stage("Build an image"){
         sh "ls -a"
+        echo "${AMI_REGION} has been selected"
+        echo "Instance type is ${INSTANCE_TYPE}"
     }
     stage("Send an email"){
         echo "Sending an email"
