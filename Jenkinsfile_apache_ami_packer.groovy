@@ -23,8 +23,7 @@ node {
     }
     stage("Build an image"){
         sh "ls -a"
-        echo "${AMI_REGION} has been selected"
-        echo "Instance type is ${INSTANCE_TYPE}"
+        sh "packer version && pwd"
     }
     stage("Send an email"){
         echo "Sending an email"
