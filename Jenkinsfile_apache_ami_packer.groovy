@@ -1,5 +1,9 @@
 node {
-    properties([parameters([
+    properties([
+        buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', 
+        daysToKeepStr: '', numToKeepStr: '4')),
+        
+        parameters([
         choice(choices: ['us-east-1', 'us-east-2', 'us-west-1', 'us-west-2'], 
         description: 'Choose the region for AMI to be created', 
         name: 'AMI_REGION'),
