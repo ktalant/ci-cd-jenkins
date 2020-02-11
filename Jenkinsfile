@@ -8,8 +8,19 @@ pipeline {
     }
 
     stage('Stage2') {
-      steps {
-        echo 'Hello, it is declarative pipeline'
+      parallel {
+        stage('Stage2') {
+          steps {
+            echo 'Hello, it is declarative pipeline'
+          }
+        }
+
+        stage('Pull code') {
+          steps {
+            dir(path: '/tmp')
+          }
+        }
+
       }
     }
 
