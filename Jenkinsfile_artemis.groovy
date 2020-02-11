@@ -24,11 +24,11 @@ node {
         }
 
     }
+    
     stage("Install necessary tools"){
         timestamps {
             ws {
                 sh '''
-                    rm -rf .ssh/known_hosts
                     ssh centos@${ARTEMIS_ENV} sudo yum install epel-release -y
                     ssh centos@${ARTEMIS_ENV} sudo yum install python-pip -y
                     ssh centos@${ARTEMIS_ENV} sudo pip install Flash
@@ -36,8 +36,15 @@ node {
             }
         }
     }
-    stage("Pull repo"){
-        
+
+    stage("Copy Artemis files"){
+        timestamps {
+            ws {
+                sh '''
+                    scp -r * centos@${ARTEMIS_ENV}
+                '''
+            }
+        }
     }
     stage("Pull repo"){
         
